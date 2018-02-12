@@ -1,0 +1,73 @@
+<!-- Home page of the application  -->
+<!DOCTYPE html>
+<!-- External Thymeleaf link  -->
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Home Page</title>
+<!-- External bootstrap link -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+.star {
+	color: red;
+}
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand glyphicon glyphicon-shopping-cart" href="/admin_home">Home</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Categories<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="/product_list">Kitchen</a></li>
+						<li><a href="/add_category">Add new</a></li>
+					</ul></li>
+				<li><a href="/user_list" class="glyphicon glyphicon-user">Users</a></li>
+				
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="/user_home" class="glyphicon glyphicon-log-out">Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<div style="color: red;" th:text="${message}"></div>
+		<div>
+			<form action="/add_category" method="post">
+				<div class="form-group row">
+					<div class="col-sm-2">
+						<label> Category Name : <span class="star">*</span></label>
+					</div>
+					<div class="col-sm-6">
+						<input type="name" class="form-control" id="name"
+							placeholder="Enter category name" name="userName" />
+					</div>
+				</div>
+				<div class="form-group row">
+					<div class="col-sm-2">
+						<label>Description : </label>
+					</div>
+					<div class="col-sm-6">
+						<textarea rows="5" cols="55" maxlength="2000"
+							placeholder="Billing Address" name="userAddress"></textarea>
+					</div>
+				</div>
+				<div class="col-md-8 text-center">
+				<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

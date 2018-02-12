@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: shopping_cart
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: spaneos
+Implementation-Vendor-Id: com.spaneos
+Build-Jdk: 1.8.0_151
+Implementation-URL: http://projects.spring.io/spring-boot/shopping_car
+ t/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
