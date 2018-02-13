@@ -3,9 +3,12 @@
  */
 package com.spaneos.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author spaneos
@@ -14,8 +17,10 @@ import javax.persistence.Id;
 @Entity
 public class CategoryBean {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id; 
+	@NotNull
+	@Column(unique=true)
 	private String name;
 	private String description;
 	/**
@@ -41,6 +46,19 @@ public class CategoryBean {
 	 */
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

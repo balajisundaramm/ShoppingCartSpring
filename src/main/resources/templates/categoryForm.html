@@ -24,21 +24,30 @@
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand glyphicon glyphicon-shopping-cart" href="/admin_home">Home</a>
+				<a class="navbar-brand glyphicon glyphicon-shopping-cart"
+					href="/admin_home">Home</a>
 			</div>
-			<ul class="nav navbar-nav">
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">Categories<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="/product_list">Kitchen</a></li>
-						<li><a href="/add_category">Add new</a></li>
-					</ul></li>
-				<li><a href="/user_list" class="glyphicon glyphicon-user">Users</a></li>
-				
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="/user_home" class="glyphicon glyphicon-log-out">Logout</a></li>
-			</ul>
+			<div>
+				<ul class="nav navbar-nav">
+					<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown" href="#">Categories<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+
+							<li th:each="category : ${categories}"><a
+								th:href="@{|/category/${category.name}|}"
+								th:text="${category.name}"></a></li>
+
+
+							<li><a href="/add_category_form">Add new</a></li>
+						</ul></li>
+					<li><a href="/user_list" class="glyphicon glyphicon-user">Users</a></li>
+
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/admin_logout"><span
+							class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+				</ul>
+			</div>
 		</div>
 	</nav>
 	<div class="container">
@@ -51,7 +60,7 @@
 					</div>
 					<div class="col-sm-6">
 						<input type="name" class="form-control" id="name"
-							placeholder="Enter category name" name="userName" />
+							placeholder="Enter category name" name="name" required="required"/>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -60,7 +69,7 @@
 					</div>
 					<div class="col-sm-6">
 						<textarea rows="5" cols="55" maxlength="2000"
-							placeholder="Billing Address" name="userAddress"></textarea>
+							placeholder="Give a brief description" name="description" required="required"></textarea>
 					</div>
 				</div>
 				<div class="col-md-8 text-center">

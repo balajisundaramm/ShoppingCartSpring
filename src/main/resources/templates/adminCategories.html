@@ -18,6 +18,10 @@
 .bs-example {
 	margin: 20px;
 }
+
+h4 {
+	color: #0079ff;
+}
 </style>
 </head>
 <body>
@@ -27,25 +31,46 @@
 				<a class="navbar-brand glyphicon glyphicon-shopping-cart"
 					href="/admin_home">Home</a>
 			</div>
-			<ul class="nav navbar-nav">
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">Categories<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="/product_list">Kitchen</a></li>
-						<li><a href="/add_category_form">Add new</a></li>
-					</ul></li>
-				<li><a href="/user_list" class="glyphicon glyphicon-user">Users</a></li>
+			<div>
+				<ul class="nav navbar-nav">
+					<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown" href="#">Categories<span class="caret"></span></a>
+						<ul class="dropdown-menu">
 
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="/user_home"><span
-						class="glyphicon glyphicon-log-out"></span>Logout</a></li>
-			</ul>
+							<li th:each="category : ${categories}"><a
+								th:href="@{|/category/${category.name}|}"
+								th:text="${category.name}"></a></li>
+
+
+							<li><a href="/add_category_form">Add new</a></li>
+						</ul></li>
+					<li><a href="/user_list" class="glyphicon glyphicon-user">Users</a></li>
+
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/admin_logout"><span
+							class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+				</ul>
+			</div>
 		</div>
 	</nav>
 
 	<div class="container">
 		<div style="color: red;" th:text="${message}"></div>
+		<div class="row col-sm-12">
+			<div class="col-sm-2">
+				<h4 th:text="${categoryName}"></h4>
+			</div>
+			<div class="col-sm-1">
+				<span><a
+					th:href="@{|/edit_category/${categoryName}|}"
+					class="glyphicon glyphicon-pencil"></a></span>
+			</div>
+			<div class="col-sm-1">
+				<span><a href="/delete_product?name=asd"
+					class="glyphicon glyphicon-trash"></a></span>
+			</div>
+		</div>
 		<table class="table">
 			<thead>
 				<tr>
@@ -57,15 +82,23 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-					<td><a class="glyphicon glyphicon-pencil"></a></td>
-					<td><a class="glyphicon glyphicon-trash"></a></td>
+				<tr th:each="product : ${products}">
+					<td th:text="${product.productName}"></td>
+					<td th:text="${product.price}"></td>
+					<td th:text="${product.stock}"></td>
+					<td><a
+						th:href="@{|/product/${product.categoryName}/${product.productName}|}"
+						class="glyphicon glyphicon-pencil"></a></td>
+					<td><a
+						th:href="@{|/delete_product/${product.id}/${product.categoryName}|}"
+						class="glyphicon glyphicon-trash"></a></td>
 				</tr>
 			</tbody>
 		</table>
+		<div class="col-sm-offset-10">
+			<a type="button" href="/add_product_form"
+				class="btn btn-primary float-right">Add Product</a>
+		</div>
 	</div>
 </body>
 </html>

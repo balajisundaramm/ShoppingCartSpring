@@ -35,14 +35,14 @@ span {
 	<div class="container">
 		<div style="color: red;" th:text="${message}"></div>
 		<div>
-			<form action="/authenticate_admin" method="post">
+			<form action="/register" method="post">
 				<div class="form-group row">
 					<div class="col-sm-2">
 						<label> Name:<span>*</span></label>
 					</div>
 					<div class="col-sm-6">
 						<input type="text" class="form-control" id="" placeholder=""
-							name="" />
+							name="name" />
 					</div>
 				</div>
 				<div class="form-group row">
@@ -51,7 +51,7 @@ span {
 					</div>
 					<div class="col-sm-6">
 						<input type="text" class="form-control" id="" placeholder=""
-							name="" />
+							name="email" />
 					</div>
 				</div>
 				<div class="form-group row">
@@ -59,8 +59,8 @@ span {
 						<label> Password:<span>*</span></label>
 					</div>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" id="" placeholder=""
-							name="" />
+						<input type="password" class="form-control" id="" placeholder=""
+							name="password" />
 					</div>
 				</div>
 				<div class="form-group row">
@@ -68,8 +68,8 @@ span {
 						<label> Retype Password:<span>*</span></label>
 					</div>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" id="" placeholder=""
-							name="" />
+						<input type="password" class="form-control" id="" placeholder=""
+							name="rePassword" />
 					</div>
 				</div>
 				<div class="form-group row">
@@ -78,7 +78,7 @@ span {
 					</div>
 					<div class="col-sm-6">
 						<input type="text" class="form-control" id="" placeholder=""
-							name="" />
+							name="mobile" />
 					</div>
 				</div>
 				<div class="form-group row">
@@ -86,8 +86,8 @@ span {
 						<label> Date of birth:<span>*</span></label>
 					</div>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" id="" placeholder=""
-							name="" />
+						<input type="date" class="form-control" id="" placeholder=""
+							name="dob" />
 					</div>
 				</div>
 				<div class="row">
@@ -96,12 +96,12 @@ span {
 					</div>
 					<div class="form-group col-sm-1">
 						<label class="radio-inline"> <input type="radio"
-							value="male" name="userGender"></input>Male
+							value="male" name="gender"></input>Male
 						</label>
 					</div>
 					<div class="form-group col-sm-1">
 						<label class="radio-inline"> <input type="radio"
-							value="male" name="userGender"></input>Female
+							value="female" name="gender"></input>Female
 						</label>
 					</div>
 				</div>
@@ -111,14 +111,13 @@ span {
 					</div>
 					<div class="col-sm-10">
 						<textarea rows="5" cols="55" maxlength="2000"
-							placeholder="Billing Address" name="userAddress">
+							placeholder="Billing Address" name="address">
 							</textarea>
 					</div>
 				</div>
 				<div class="col-md-8 text-center">
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</div>
-
 			</form>
 		</div>
 	</div>
