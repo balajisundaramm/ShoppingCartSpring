@@ -40,7 +40,7 @@ public class HomeController {
 		return "adminLoginForm";
 	}
 	
-	@RequestMapping("/user_home")
+	@RequestMapping("/user_login_view")
 	public String showUserHome() {
 		return "userLoginView";
 	}

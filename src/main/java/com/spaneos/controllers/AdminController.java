@@ -8,19 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.spaneos.dao.CategoryDao;
 import com.spaneos.model.CategoryBean;
 import com.spaneos.model.Product;
 import com.spaneos.model.User;
 import com.spaneos.service.AdminService;
-import com.spaneos.service.WelcomeService;
 @Controller
 public class AdminController {
 	private static final Logger LOGGER= LoggerFactory.getLogger(AdminController.class.getName());
@@ -156,6 +153,46 @@ public class AdminController {
 		List<Product> products=service.fetchProductByCategoryName(name);
 		model.addAttribute("products", products);
 		model.addAttribute("categoryName", name);
+		return "adminCategories";
+	}
+	
+	@GetMapping("/delete_category/{name}")
+	public String deleteCategory(Model model, @PathVariable("name") String name) {
+		String response=service.deleteCategory(name); 
+		LOGGER.error("error response in delete category "+response);
+		List<CategoryBean> categories=service.fetchAllCategories();
+		model.addAttribute("categories", categories);
+		return "adminHome";
+	}
+	
+	@PostMapping("/edit_user")
+	public String editUser(Model model, @ModelAttribute User user, BindingResult result) {
+		List<CategoryBean> categories=service.fetchAllCategories();
+		model.addAttribute("categories", categories);
+		service.editUser(user);
+		List<User> users=service.fetchUsers();
+		model.addAttribute("users", users);
+		return "userList";
+	}
+	
+	@PostMapping("/edit_category")
+	public String editCategory(Model model, @ModelAttribute CategoryBean category, BindingResult result) {
+		service.editCategory(category);
+		List<CategoryBean> categories=service.fetchAllCategories();
+		model.addAttribute("categories", categories);
+		return "adminHome";
+	}
+	
+	@PostMapping("/edit_product")
+	public String editProduct(Model model, @ModelAttribute Product product, BindingResult result) {
+		List<CategoryBean> categories=service.fetchAllCategories();
+		model.addAttribute("categories", categories);
+		String response=service.editProduct(product);
+		LOGGER.error("edit product {} ", product);
+		LOGGER.error("edit product response {} ", response);
+		List<Product> products=service.fetchProductByCategoryName(product.getCategoryName());
+		model.addAttribute("products", products);
+		model.addAttribute("categoryName", product.getCategoryName());
 		return "adminCategories";
 	}
 

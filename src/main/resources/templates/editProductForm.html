@@ -62,8 +62,10 @@
 					</div>
 
 					<div class="col-sm-6">
-						<select class="form-control" id="sel1" name="categoryName" th:each="category : ${categories}">
-							<option th:text="${category.name}">Mechanical</option>
+						<select class="form-control" id="sel1" name="categoryName">
+							<th:block th:each="category : ${categories}">
+							<option th:text="${category.name}"></option>
+							</th:block>
 						</select>
 					</div>
 				</div>
@@ -73,7 +75,7 @@
 					</div>
 					<div class="col-sm-6">
 							<input type="text" class="form-control" id="" name="productName"
-								th:value="${product.productName}" disabled="disabled"/>
+								th:value="${product.productName}" readonly="readonly"/>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -90,7 +92,7 @@
 						<label>Price : <span class="star">*</span></label>
 					</div>
 					<div class="col-sm-6">
-						<input type="number" class="form-control" id="price" name="stock" th:value="${product.price}" />
+						<input type="number" class="form-control" id="price" name="price" th:value="${product.price}" />
 					</div>
 				</div>
 				<div class="form-group row">

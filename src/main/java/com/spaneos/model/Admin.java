@@ -9,8 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
-import org.aspectj.weaver.tools.Trace;
-
 /**
  * @author spaneos
  *
