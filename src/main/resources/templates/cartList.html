@@ -55,6 +55,24 @@ h4 {
 				}
 			});
 		});
+		$('#cart').submit(function(e) {
+			e.preventDefault();
+			var valid = true;
+			var count = 0;
+			$('input[type=checkbox]').each(function() {
+				if ($(this).is(':checked')) {
+					count++;
+				}
+			});
+			if (count == 0) {
+				valid = false;
+				count = 0;
+				alert("No Product selected.");
+			}
+			if(valid){
+				(this).submit();
+			}
+		});
 	});
 </script>
 </head>
@@ -79,7 +97,7 @@ h4 {
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="/view_cart"><span
 						class="glyphicon glyphicon-shopping-cart"></span> View Cart</a></li>
-				<li><a href="/"><span class="glyphicon glyphicon-log-out"></span>
+				<li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>
 						Logout</a></li>
 			</ul>
 		</div>
@@ -94,9 +112,9 @@ h4 {
 		</div>
 		<form id="cart" action="/add_checkout" method="post">
 			<table class="table">
-
 				<thead>
 					<tr>
+						<th>Select</th>
 						<th>Product</th>
 						<th>Price</th>
 						<th>Quantity</th>
@@ -105,6 +123,8 @@ h4 {
 				</thead>
 				<tbody>
 					<tr th:each="product : ${products}">
+						<td><input id="check" type="checkbox" name="a"
+							 th:value="${product.productName}"></input></td>
 						<td th:text="${product.productName}"></td>
 						<td th:text="${product.price}"></td>
 						<td th:text="${product.quantity}"></td>

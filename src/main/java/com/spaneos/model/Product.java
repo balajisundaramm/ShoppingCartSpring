@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 /**
- * @author spaneos
+ * @author balaji
  *
  */
 @Entity
@@ -105,10 +105,62 @@ public class Product {
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
+	
+	
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", categoryName=" + categoryName + ", productName=" + productName
 				+ ", description=" + description + ", price=" + price + ", stock=" + stock + "]";
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((categoryName == null) ? 0 : categoryName.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + price;
+		result = prime * result + ((productName == null) ? 0 : productName.hashCode());
+		result = prime * result + stock;
+		return result;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Product other = (Product) obj;
+		if (categoryName == null) {
+			if (other.categoryName != null)
+				return false;
+		} else if (!categoryName.equals(other.categoryName))
+			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (id != other.id)
+			return false;
+		if (price != other.price)
+			return false;
+		if (productName == null) {
+			if (other.productName != null)
+				return false;
+		} else if (!productName.equals(other.productName))
+			return false;
+		if (stock != other.stock)
+			return false;
+		return true;
 	}
 
 
